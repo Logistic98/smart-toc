@@ -29,15 +29,19 @@ const execOnCurrentTab = (command) => {
 chrome.action.onClicked.addListener(() => execOnCurrentTab('toggle'))
 chrome.commands.onCommand.addListener((command) => execOnCurrentTab(command))
 
-chrome.runtime.onInstalled.addListener(async () => {
+chrome.runtime.onInstalled.addListener(async (details) => {
   chrome.contextMenus.create({
     id: "position_menu",
     title: "Reset TOC Position",
     type: 'normal',
-    contexts: ["all"],
+    contexts: ["action"],
   });
-  let url = chrome.runtime.getURL("options.html");
-  await chrome.tabs.create({ url });
+  
+  // 只在首次安装时打开配置页面
+  if (details.reason === 'install') {
+    let url = chrome.runtime.getURL("options.html");
+    await chrome.tabs.create({ url });
+  }
 });
 
 chrome.contextMenus.onClicked.addListener(function (item, tab) {

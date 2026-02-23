@@ -39,7 +39,7 @@ export const createLoggingDecorator = <T extends AnyFunction>(
  * 记录对象各个方法的调用情况
  * 并添加到 window.logged.*上
  */
-export const logObject = <T = any>(object: T, namespace: string): T => {
+export const logObject = <T extends { [K: string]: any }>(object: T, namespace: string): T => {
   const loggers = {} as any
   const getLogger = (fnName: string) => {
     if (!loggers[fnName]) {
