@@ -27,7 +27,9 @@
       "run_at": "document_end"
     }
   ],
-  "content_security_policy":{"extension_pages": "script-src 'self';object-src 'self';script-src-elem 'self' 'unsafe-inline' https://platform.twitter.com https://syndication.twitter.com;"},
+  "content_security_policy": {
+    "extension_pages": "script-src 'self';object-src 'self';script-src-elem 'self' 'unsafe-inline';"
+  },
   "commands": {
     "toggle": {
       "suggested_key": {
